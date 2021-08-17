@@ -1,5 +1,6 @@
 package com.example.notekeeper;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -17,7 +18,10 @@ import com.example.notekeeper.databinding.ActivityMainBinding;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+
+import java.util.List;
 
 public class NoteActivity extends AppCompatActivity {
 
@@ -38,7 +42,11 @@ public class NoteActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
 
         Spinner  spinnerCourses = findViewById(R.id.spinner_courses);
-
+        List <CourseInfo> courses = DataManager.getInstance().getCourses();
+        ArrayAdapter<CourseInfo> adapterCourses =
+             new  ArrayAdapter<>(context: this, android.R.layout.simple_spinner_item, courses);
+        adapterCourses.setDropDownViewResource(andriod.R.layout.simple_spinner_dropdown_item);
+        spinnerCourses.setAdapter(adpaterCourses);
     }
 
     @Override
